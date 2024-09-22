@@ -1,9 +1,16 @@
+"use client";
+
 import { BackgroundGradientAnimation } from "@/components/ui/bg-gradient";
 import Image from "next/image";
+import { motion } from "framer-motion"; 
 import icon from "../../public/icon/verified.png";
 import instagramIcon from "../../public/icon/instagram.png";
 import whatsappIcon from "../../public/icon/whatsapp.png"; 
 import arrowIcon from "../../public/icon/arrow-right.png"; 
+import { TextGenerateEffect } from "@/components/ui/text";
+
+const words = `Keindahan alam yang bisa ditemukan di setiap sudut dunia
+`;
 
 const Datasosmed = [
   {
@@ -31,6 +38,17 @@ const buttons = [
   { id: 4, name: "Button 4", icon: whatsappIcon, url: "#" },
 ];
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: index * 0.4, // Delay untuk setiap item
+    },
+  }),
+};
+
 export default function Home() {
   return (
     <div className="w-full h-screen relative">
@@ -47,10 +65,15 @@ export default function Home() {
           className="w-full h-full opacity-60"
         />
       </div>
-      <div className="absolute inset-0 m-auto h-full flex flex-col top-96 items-center"> 
-      <div className="relative w-44 h-44 animate-spin-slow bg-[conic-gradient(rgba(0,0,255,0),#D100EA,#7F00EA)] rounded-full">
-  <div className="absolute inset-0 m-auto w-[168px] h-[168px] bg-white rounded-full"></div>
-</div>
+      <motion.div 
+        className="absolute inset-0 m-auto h-full flex flex-col top-96 items-center" 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        transition={{ duration: 1 }} 
+      >
+        <div className="relative w-44 h-44 animate-spin-slow bg-[conic-gradient(rgba(0,0,255,0),rgba(0,0,255,0),rgba(209,0,234,0.8),#7F00EA)] rounded-full">
+          <div className="absolute inset-0 m-auto w-[168px] h-[168px] bg-black rounded-full"></div>
+        </div>
 
         <div className="mt-4 text-white text-lg w-full text-center px-4">
           <div className="flex gap-2 items-center justify-center">
@@ -66,43 +89,61 @@ export default function Home() {
               https://example.com
             </a>
           </div>
-          <p className="font-normal text-sm">
-            Keindahan alam yang bisa ditemukan di setiap sudut dunia
-          </p>
+          <div className="font-normal text-sm">
+            <TextGenerateEffect words={words} />
+          </div>
 
+          {/* Munculnya media sosial */}
           <div className="mt-4 gap-3 flex justify-center">
-            {Datasosmed.map((sosmed) => (
-              <a
+            {Datasosmed.map((sosmed, index) => (
+              <motion.a
                 key={sosmed.id}
                 href={sosmed.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center text-black text-xs font-semibold bg-white rounded-lg p-2 m-2"
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
+                custom={index}
               >
                 <Image src={sosmed.icon} alt={sosmed.name} width={20} height={20} className="mr-2" />
                 {sosmed.name}
-              </a>
+              </motion.a>
             ))}
           </div>
 
-
+          {/* Tombol yang muncul setelah media sosial */}
           <div className="w-full mt-8 px-[26rem] max-lg:px-60 max-sm:px-5 max-md:px-0">
-            {buttons.map((button) => (
-              <a
+            {buttons.map((button, index) => (
+              <motion.a
                 key={button.id}
                 href={button.url}
                 className="flex items-center justify-between w-full bg-white rounded-lg p-3 mb-2 hover:bg-gray-200"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    transition: { 
+                      delay: (Datasosmed.length + index) * 0.4 // Delay untuk tombol setelah media sosial
+                    }
+                  }
+                }}
+                custom={index}
               >
                 <div className="flex items-center">
                   <Image src={button.icon} alt={button.name} width={20} height={20} className="mr-2" />
                   <span className="text-black font-semibold">{button.name}</span>
                 </div>
                 <Image src={arrowIcon} alt="arrow" width={16} height={16} />
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
