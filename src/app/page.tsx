@@ -38,7 +38,7 @@ const Datasosmed = [
 const buttons = [
   { id: 1, name: "Google form", icon: form, url: "#" },
   { id: 3, name: "Pricelist", icon: price, url: "#" },
-  { id: 4, name: "Location", icon: maps, url: "#" },
+  { id: 4, name: "Location", icon: maps, url: "https://maps.app.goo.gl/DCRmmzgapzdPWG4Z6" },
 ];
 
 const itemVariants = {
@@ -81,7 +81,7 @@ export default function Home() {
         <div className="mt-4 text-white text-lg w-full text-center px-4">
           <div className="flex gap-2 items-center justify-center">
             <p className="font-semibold text-[24px] sm:text-[20px]">
-              Travel with Abassstravel
+              Trip with Abassstravel
             </p>
             <div>
               <Image src={icon} alt="icon" width={32} height={32} />
