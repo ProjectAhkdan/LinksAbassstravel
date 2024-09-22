@@ -48,7 +48,9 @@ export default function Home() {
         />
       </div>
       <div className="absolute inset-0 m-auto h-full flex flex-col top-96 items-center"> 
-        <div className="w-44 h-44 bg-white rounded-full flex items-center justify-center"></div>
+      <div className="relative w-44 h-44 animate-spin-slow bg-[conic-gradient(rgba(0,0,255,0),#D100EA,#7F00EA)] rounded-full">
+  <div className="absolute inset-0 m-auto w-[168px] h-[168px] bg-white rounded-full"></div>
+</div>
 
         <div className="mt-4 text-white text-lg w-full text-center px-4">
           <div className="flex gap-2 items-center justify-center">
