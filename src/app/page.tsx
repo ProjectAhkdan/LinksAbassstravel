@@ -6,6 +6,10 @@ import { motion } from "framer-motion";
 import icon from "../../public/icon/verified.png";
 import instagramIcon from "../../public/icon/instagram.png";
 import whatsappIcon from "../../public/icon/whatsapp.png"; 
+import form from "../../public/icon/form.png";
+import maps from "../../public/icon/google-maps.png"
+import price from "../../public/icon/price-tag.png"
+import Footer from "@/components/ui/footer";
 import arrowIcon from "../../public/icon/arrow-right.png"; 
 import { TextGenerateEffect } from "@/components/ui/text";
 
@@ -32,10 +36,9 @@ const Datasosmed = [
 ];
 
 const buttons = [
-  { id: 1, name: "Button 1", icon: instagramIcon, url: "#" },
-  { id: 2, name: "Button 2", icon: whatsappIcon, url: "#" },
-  { id: 3, name: "Button 3", icon: instagramIcon, url: "#" },
-  { id: 4, name: "Button 4", icon: whatsappIcon, url: "#" },
+  { id: 1, name: "Google form", icon: form, url: "#" },
+  { id: 3, name: "Pricelist", icon: price, url: "#" },
+  { id: 4, name: "Location", icon: maps, url: "#" },
 ];
 
 const itemVariants = {
@@ -57,7 +60,7 @@ export default function Home() {
       </div>
       <div className="w-full h-full bg-black/85 bg-cover relative">
         <Image
-          src="/noise.png"
+          src="/noise-transparent.png"
           width={400}
           height={400}
           alt="noise"
@@ -144,6 +147,9 @@ export default function Home() {
           </div>
         </div>
       </motion.div>
+      <div>
+      <Footer /> 
+      </div>
     </div>
   );
 }
